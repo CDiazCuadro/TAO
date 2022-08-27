@@ -105,7 +105,7 @@ tm= xm;
 for i = 1:length(tx)
   for j = 1:length(ty)
     txy = [tx(i), ty(j)];
-    tz(i,j) = norm(txy - tm);
+    tz(i,j) = (norm(txy - tm))^2;
   end
 end
 figure (5)
@@ -129,9 +129,9 @@ set (h, "fontsize", 16);
 figure (6)
 hold on
 x2d = ty;
-for c = -1:0.1:0
-  x1 = 2 - sqrt( (c-1)^2 .- (x2d .- 1/2).^2 );
-  plot(x1,x2d,'LineWidth',3*(1-c))
+for c = -0.4:0.05:0
+  x1 = 2 - sqrt( (c-1)^4 .- (x2d .- 1/2).^2 );
+  plot(x2d,x1,'LineWidth',5*(0.5-c))
 end
 axis([0 1 0 1])
 grid minor
@@ -154,7 +154,7 @@ end
 for it = f_s
  plot([it,it],s_x,'r','LineWidth',3)
 end
-legend('S_2','','','','','','S_1','','','','','')
+lg = legend('S_2','','','','','','S_1','','','','','')
 grid minor
 xl=xlabel('x');
 set (xl, "fontsize", 16);
